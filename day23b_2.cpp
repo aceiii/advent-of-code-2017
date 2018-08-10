@@ -3,17 +3,12 @@
 namespace {
 
     // registers a-h
-    int //a = 0,
-        b = 81,
+    int b = 81,
         c = 81,
-        //d = 0,
         e = 0,
-        //f = 0,
-        //g = 0,
-        counter = 0; //h = 0;
+        counter = 0; // h is only used for counting so renaming for clarity
 
     bool debug_mode = false;
-         //should_inc_counter = false;
 
     int mul = 0;
 }
@@ -24,89 +19,36 @@ void print_registers() {
         << "  a: " << debug_mode << '\n'
         << "  b: " << b << '\n'
         << "  c: " << c << '\n'
-        //<< "  d: " << d << '\n'
         << "  e: " << e << '\n'
-        //<< "  f: " << should_inc_counter << '\n'
-        //<< "  g: " << g << '\n'
         << "  h: " << counter << '\n'
         << "]\n";
 }
 
 void func1() {
     while (true) {
-        bool should_inc_counter = false;
+        bool should_inc_counter = false; // f is only used as a flag and can be made local
 
-        //d = 2;
-
-        //bool reset = true;
-
+        // d and e can be locals
+        // they are only used for looping
         for (int d = 2; d != b; d += 1) {
-        //do {
-            //print_registers();
-
             for (int e = 2; e != b; e += 1) {
-                /*
-            if (reset) {
-                reset = false;
-                e = 2;
+
+                mul += 1;
+
+                if (d * e == b) { // checks if d or e is  factor of b
+                    should_inc_counter = true;
+                    break; // Can break early
+                }
             }
-            */
-
-            //g = (d * e) - b;
-            mul += 1;
-
-            //if ((d * e) - b == 0) {
-            if (d * e == b) {
-                //std::cout << "should_inc_counter\n";
-                std::cout << "break (d: " << d << ", e: " << e << ", b: " << b << ")\n";
-                should_inc_counter = true;
-                //break;
-            }
-
-            //e += 1;
-            //g = e - b;
-
-            //std::cout << "g1: " << g << '\n';
-            //if (g) {
-            //std::cout << "e: " << e << ", b: " << b << '\n';
-            /*
-            if (e - b) {
-                d -= 1;
-                continue;
-            }
-            */
-            }
-
-            //d += 1;
-            //g = d - b;
-
-            //reset = true;
-
-            //std::cout << "g2: " << g << '\n';
-            //std::cout << "(d: " << d << ", b: " << b << ")\n";
-        //} while (g);
-        //} while (d - b);
-
         }
 
-        std::cout << "(b: " << b << ")\n";
-        if (should_inc_counter) {    // if (f == 0) // reversed value when setting
+        if (should_inc_counter) {
+            // this counter is only incremented based on the loop above
+            // in effect the check above is incrementing the counter if
+            // the register b has a factor between 2 and b, in other words
+            // if b is not a prime we can increment this counter
             counter += 1;
         }
-
-        //g = b - c;
-
-
-        //std::cout << "h: " << counter << '\n';
-        //std::cout << "b: " << b << ", c: " << c << ", h: " << counter << '\n';
-        //if (g) {
-        /*
-        if (b - c) {
-            b += 17;
-        } else {
-            break;
-        }
-        */
 
         if (c == b) {
             break;
@@ -117,10 +59,8 @@ void func1() {
 }
 
 void func2() {
-    //b = 108100;
-    //c = 125100;
-    b = 81;
-    c = 81 + (17 * 10);
+    b = 108100;
+    c = 125100;
 
     mul += 1;
 }

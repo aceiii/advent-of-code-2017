@@ -112,7 +112,7 @@ def solve_mul_count(lines):
     instructions = parse_instructions(sys.stdin)
     program = Program(instructions)
     #program.set_instr_ptr(27)
-    #program.set_register("a", 1)
+    program.set_register("a", 1)
     #program.set_register("c", 125100)
     #program.set_register("b", 108100)
     program.run()

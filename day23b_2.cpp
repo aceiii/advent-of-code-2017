@@ -1,4 +1,5 @@
 #include <iostream>
+#include "primes.hpp"
 
 namespace {
 
@@ -26,10 +27,11 @@ void print_registers() {
 
 void func1() {
     while (true) {
-        bool should_inc_counter = false; // f is only used as a flag and can be made local
+        //bool should_inc_counter = false; // f is only used as a flag and can be made local
 
         // d and e can be locals
         // they are only used for looping
+        /*
         for (int d = 2; d != b; d += 1) {
             for (int e = 2; e != b; e += 1) {
 
@@ -41,8 +43,12 @@ void func1() {
                 }
             }
         }
+        */
 
-        if (should_inc_counter) {
+        // replace nested loops above with prime check
+        bool is_prime = primes_set.find(b) != primes_set.end();
+
+        if (!is_prime) {
             // this counter is only incremented based on the loop above
             // in effect the check above is incrementing the counter if
             // the register b has a factor between 2 and b, in other words
